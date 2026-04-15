@@ -8,7 +8,7 @@ def emotion_detector(text_to_analyze):
         'watson.runtime.nlp.v1/NlpService/EmotionPredict'
     headers = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
     input_json = { "raw_document": { "text": text_to_analyze } }
-    response = requests.post(url, headers=headers, json=input_json, timeout=10).text
+    response = requests.post(url, headers=headers, json=input_json, timeout=10)
 
     if response.status_code == 400:
         return {
@@ -20,7 +20,7 @@ def emotion_detector(text_to_analyze):
             'dominant_emotion': None
         }
 
-    formated_response = json.loads(response)
+    formated_response = json.loads(response.text)
 
     dominant_emotion = None
     dominant_emotion_score = 0.0
