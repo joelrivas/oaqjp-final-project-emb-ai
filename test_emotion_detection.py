@@ -1,3 +1,4 @@
+"""Unit tests for emotion detection"""
 import unittest
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -6,7 +7,7 @@ class EmotionDetectionTest(unittest.TestCase):
 
     def test_emotion_detector(self):
         """Test emotion_detector"""
-        
+
         emotion = emotion_detector("I am glad this happened")
         self.assertEqual(emotion["dominant_emotion"], "joy")
 
