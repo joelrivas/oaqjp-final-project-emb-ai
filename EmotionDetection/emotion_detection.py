@@ -8,7 +8,8 @@ def emotion_detector(text_to_analyze):
         'watson.runtime.nlp.v1/NlpService/EmotionPredict'
     headers = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
     input_json = { "raw_document": { "text": text_to_analyze } }
-    formated_response = json.loads(requests.post(url, headers=headers, json=input_json).text)
+    response = requests.post(url, headers=headers, json=input_json, timeout=10).text
+    formated_response = json.loads(response)
 
     dominant_emotion = None
     dominant_emotion_score = 0.0
